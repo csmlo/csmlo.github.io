@@ -1,6 +1,148 @@
-<p class="codepen" data-height="300" data-default-tab="html,result" data-slug-hash="VwzGNqL" data-user="zxylitoics" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
-  <span>See the Pen <a href="https://codepen.io/zxylitoics/pen/VwzGNqL">
-  Horizontal Fundraising Thermometer</a> by c (<a href="https://codepen.io/zxylitoics">@zxylitoics</a>)
-  on <a href="https://codepen.io">CodePen</a>.</span>
-</p>
+<div class="codepen" data-height="300" data-default-tab="html,result" data-slug-hash="VwzGNqL" data-user="zxylitoics"  data-prefill='{"title":"Horizontal Fundraising Thermometer","description":"Inspired by the basic Kickstarter thermometer... Looking for a simple way to help a friend raise money with a beard-a-thon","tags":["horizontal","thermometer","barometer","progress","bar"],"head":"<link href=\"https://fonts.googleapis.com/css?family=Nunito:400,700\" rel=\"stylesheet\">","scripts":[],"stylesheets":[]}'>
+  <pre data-lang="html">&lt;div id=countdown-wrap>
+	&lt;svg class="heart" viewBox="0 0 32 29.6">
+  &lt;path d="M23.6,0c-3.4,0-6.3,2.7-7.6,5.6C14.7,2.7,11.8,0,8.4,0C3.8,0,0,3.8,0,8.4c0,9.4,9.5,11.9,16,21.2
+	c6.1-9.3,16-12.1,16-21.2C32,3.8,28.2,0,23.6,0z"/>
+&lt;/svg>
+  &lt;div id="goal">$1 500,000&lt;/div>
+  &lt;div id="glass">
+    &lt;div id="progress">
+    &lt;/div>
+  &lt;/div>
+  &lt;div class="goal-stat">
+    &lt;span class="goal-number">0%&lt;/span>
+    &lt;span class="goal-label">Funded&lt;/span>
+  &lt;/div>
+  &lt;div class="goal-stat">
+    &lt;span class="goal-number">$0&lt;/span>
+    &lt;span class="goal-label">Raised&lt;/span>
+  &lt;/div>
+  &lt;div class="goal-stat">
+    &lt;span class="goal-
+&lt;/div>
+&lt;!--http://stackoverflow.com/questions/9335140/how-to-countdown-to-a-date -->
+</pre>
+  <pre data-lang="less">body * {
+	font-family: roboto-condensed, sans-serif;
+
+font-weight: 600;
+font-style: normal;
+box-sizing: border-box;
+}
+
+body {
+	background-color: #142F4C;
+}
+
+#countdown-wrap {
+  width: 100%;
+  height: 300px;
+  //border: 1px solid black;
+  padding: 20px;
+  font-family: arial;
+  max-width: 650px;
+  margin: 150px auto 300px;
+}
+
+#goal {
+  font-size: 48px;
+  text-align: right;
+  color: #FFF;
+  @media only screen and (max-width : 640px) {
+    text-align: center;  
+  }
+  
+}
+.heart {
+  fill: #ffb351;
+  position: relative;
+  top: 50px;
+  width: 50px;
+  animation: pulse 1s ease infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.3); }
+  100% { transform: scale(1); }
+}
+#glass {
+  width: 100%;
+  height: 20px;
+  background: #0055a7;
+  border-radius: 10px;
+  float: left;
+  overflow: hidden;
+}
+
+#progress {
+  float: left;
+  width: 16%;
+  height: 20px;
+  background: #f04e31;
+  z-index: 333;
+  //border-radius: 5px;
+}
+
+.goal-stat {
+  width: 25%;
+  //height: 30px;
+  padding: 10px;
+  float: left;
+  margin: 0;
+  color: #FFF;
+  
+  @media only screen and (max-width : 640px) {
+    width: 50%;
+    text-align: center;
+  }
+}
+
+.goal-number, .goal-label {
+  display: block;
+}
+
+.goal-number {
+  font-weight: bold;
+}</pre>
+  <pre data-lang="js">
+
+    CountDownTimer('12/20/2020 10:1 AM', 'countdown');
+    CountDownTimer('12/20/2020 10:1 AM', 'newcountdown');
+
+    function CountDownTimer(dt, id)
+    {
+        var end = new Date(dt);
+
+        var _second = 1000;
+        var _minute = _second * 60;
+        var _hour = _minute * 60;
+        var _day = _hour * 24;
+        var timer;
+
+        function showRemaining() {
+            var now = new Date();
+            var distance = end - now;
+            if (distance &lt; 0) {
+
+                clearInterval(timer);
+                document.getElementById(id).innerHTML = '0';
+
+                return;
+            }
+            var days = Math.floor(distance / _day);
+            var hours = Math.floor((distance % _day) / _hour);
+            var minutes = Math.floor((distance % _hour) / _minute);
+            var seconds = Math.floor((distance % _minute) / _second);
+
+            document.getElementById(id).innerHTML = days /*+ ' days'*/;
+            //document.getElementById(id).innerHTML += hours + 'hrs ';
+            //document.getElementById(id).innerHTML += minutes + 'mins ';
+            //document.getElementById(id).innerHTML += seconds + 'secs';
+        }
+
+        timer = setInterval(showRemaining, 1000);
+    }
+
+</pre></div>
 <script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
